@@ -19,55 +19,55 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.Component;     //java gui /java.awt/java.swing ÆĞÅ°ÁöÀÇ Å¬·¡½º ÀÌ¿ë
+import java.awt.Component;     //java gui /java.awt/java.swing íŒ¨í‚¤ì§€ì˜ í´ë˜ìŠ¤ ì´ìš©
 
 import javax.swing.SwingConstants;
 
-public class road extends JPanel { //extends »ó¼ÓºÎ¸ğ¿¡¼­ ¼±¾ğ/Á¤ÀÇÇÏ°í ºÎ¸ğÀÇ ¸Ş¼Òµå¸¦ ±×´ë·Î »ç¿ë
-//private Å¬·¡½º ³»¿¡¼­¸¸ Á¢±ÙÀÌ °¡´É
+public class road extends JPanel { //extends ìƒì†ë¶€ëª¨ì—ì„œ ì„ ì–¸/ì •ì˜í•˜ê³  ë¶€ëª¨ì˜ ë©”ì†Œë“œë¥¼ ê·¸ëŒ€ë¡œ ì‚¬ìš©
+//private í´ë˜ìŠ¤ ë‚´ì—ì„œë§Œ ì ‘ê·¼ì´ ê°€ëŠ¥
     private Object[] colum
-            = {"¹øÈ£","µµ·Î¸í (±âÁ¡<->Á¾Á¡)", "»óÅÂ", "¡Ú"};
+            = {"ë²ˆí˜¸","ë„ë¡œëª… (ê¸°ì <->ì¢…ì )", "ìƒíƒœ", "â˜…"};
 
     private Object[][] data = {
-            //°æºÎ
-            {"1","°æºÎ (¾çÀçIC<->±¸¼­IC)","¿øÈ°",false},
-            //³²ºÏ
-            {"15","¼­ÇØ¾È (Á×¸²JC<->±İÃµIC)","¿øÈ°",false},
-            {"17","ÀÍ»êÆòÅÃ (ÀÍ»êJC<->¾È¼ºIC)","¿øÈ°",false},
-            {"25","È£³² (¼­ÃáÃµIC<->³í»êIC)","¿øÈ°",false},
-            {"25","³í»êÃµ¾È (³í»êJC<->Ãµ¾ÈJC)","¿øÈ°",false},
-            {"17","¼øÃµ¿ÏÁÖ (µ¿¼øÃµJC<->¿ÏÁÖJC)","¿øÈ°",false},
-            {"29","¼¼Á¾Æ÷Ãµ (¼¼Á¾JC<->½ÅºÏIC)","¿øÈ°",false},
-            {"35","Åë¿µ´ëÀü (Åë¿µIC<->ºñ·æJC)","¿øÈ°",false},
-            {"35","ÁßºÎ (³²ÀÌJC<->ÇÏ³²IC)","¿øÈ°",false},
-            {"37","Á¦2ÁßºÎ (¸¶ÀåJC<->»ê°îJC)","¿øÈ°",false},
-            {"45","ÁßºÎ³»·ú (³»¼­JC<->¾çÆòIC)","¿øÈ°",false},
-            {"55","Áß¾Ó (ÀÍ»êJC<->¾È¼ºIC)","¿øÈ°",false},
-            {"65","µ¿ÇØ (µ¿ºÎ»êIC<->¼ÓÃÊIC)","¿øÈ°",false},
-            //µ¿¼­
-            {"10","³²ÇØ (¼­¿µ¾ÏIC<->´öÃµIC)","¿øÈ°",false},
-            {"12","¹«¾È±¤ÁÖ (¹«¾È°øÇ×IC<->¿î¼öIC)","¿øÈ°",false},
-            {"12","±¤ÁÖ´ë±¸ (¹®ÈïJC<->¿ÁÆ÷JC)","¿øÈ°",false},
-            {"14","ÇÔ¾ç¿ï»ê (ºÏÇÔ¾çJC<->¿ïÁÖJC)","¿øÈ°",false},
-            {"16","¿ï»ê (¾ğ¾çJC<->¿ï»êIC)","¿øÈ°",false},
-            {"20","»õ¸¸±İÆ÷Ç× (»õ¸¸±İIC<->Æ÷Ç×IC)","¿øÈ°",false},
-            {"30","´çÁø¿µ´ö (´çÁøJC<->¿µ´öIC)","¿øÈ°",false},
-            {"32","¾Æ»êÃ»ÁÖ (¼­¾Æ»êIC<->¿ÀÃ¢JC)","¿øÈ°",false},
-            {"40","ÆòÅÃÁ¦Ãµ (¼­ÆòÅÃJC<->Á¦ÃµJC)","¿øÈ°",false},
-            {"50","¿µµ¿ (¼­Ã¢JC<->°­¸ªJC)","¿øÈ°",false},
-            {"52","±¤ÁÖ¿øÁÖ (°æ±â±¤ÁÖJC<->¿øÁÖJC)","¿øÈ°",false},
-            {"60","¼­¿ï¾ç¾ç (°­ÀÏIC<->¾ç¾çIC)","¿øÈ°",false},
-            //¼øÈ¯
-            {"100","¼öµµ±ÇÁ¦1¼øÈ¯ (ÀÏ»êIC<->ÆÇ±³JC)","¿øÈ°",false},
-            {"300","´ëÀü³²ºÎ (¼­´ëÀüJC<->ºñ·æJC)","¿øÈ°",false},
-            {"400","¼öµµ±ÇÁ¦2¼øÈ¯ (È­¼ºJC<->¹ı¿øIC)","¿øÈ°",false},
-            {"500","±¤ÁÖ¿Ü°¢¼øÈ¯ (º»·®IC<->´ë´öJC)","¿øÈ°",false},
-            {"600","ºÎ»ê¿Ü°û¼øÈ¯ (Áø¿µJC<->±âÀåJC)","¿øÈ°",false},
-            {"700","´ë±¸¿Ü°û¼øÈ¯ (±¸¶óIC<->»ó¸ÅJC)","¿øÈ°",false},
-            //°æÀÎ
-            {"110","°æÀÎ (¼­ÀÎÃµIC<->½Å¿ùIC)","¿øÈ°",false},
-            {"120","Á¦2°æÀÎ (°øÇ×½Åµµ½ÃJC<->¿©¼ö´ë·ÎIC)","¿øÈ°",false},
-            {"130","ÀÎÃµ°øÇ× (½ÅºÒIC<->ºÏ·ÎJC)","¿øÈ°",false},
+            //ê²½ë¶€
+            {"1","ê²½ë¶€ (ì–‘ì¬IC<->êµ¬ì„œIC)","ì„œí–‰",false},
+            //ë‚¨ë¶
+            {"15","ì„œí•´ì•ˆ (ì£½ë¦¼JC<->ê¸ˆì²œIC)","ì›í™œ",false},
+            {"17","ìµì‚°í‰íƒ (ìµì‚°JC<->ì•ˆì„±IC)","ì›í™œ",false},
+            {"25","í˜¸ë‚¨ (ì„œì¶˜ì²œIC<->ë…¼ì‚°IC)","ì„œí–‰",false},
+            {"25","ë…¼ì‚°ì²œì•ˆ (ë…¼ì‚°JC<->ì²œì•ˆJC)","ì›í™œ",false},
+            {"17","ìˆœì²œì™„ì£¼ (ë™ìˆœì²œJC<->ì™„ì£¼JC)","ì›í™œ",false},
+            {"29","ì„¸ì¢…í¬ì²œ (ì„¸ì¢…JC<->ì‹ ë¶IC)","ì›í™œ",false},
+            {"35","í†µì˜ëŒ€ì „ (í†µì˜IC<->ë¹„ë£¡JC)","ì •ì²´",false},
+            {"35","ì¤‘ë¶€ (ë‚¨ì´JC<->í•˜ë‚¨IC)","ì •ì²´",false},
+            {"37","ì œ2ì¤‘ë¶€ (ë§ˆì¥JC<->ì‚°ê³¡JC)","ì›í™œ",false},
+            {"45","ì¤‘ë¶€ë‚´ë¥™ (ë‚´ì„œJC<->ì–‘í‰IC)","ì›í™œ",false},
+            {"55","ì¤‘ì•™ (ìµì‚°JC<->ì•ˆì„±IC)","ì„œí–‰",false},
+            {"65","ë™í•´ (ë™ë¶€ì‚°IC<->ì†ì´ˆIC)","ì›í™œ",false},
+            //ë™ì„œ
+            {"10","ë‚¨í•´ (ì„œì˜ì•”IC<->ë•ì²œIC)","ì •ì²´",false},
+            {"12","ë¬´ì•ˆê´‘ì£¼ (ë¬´ì•ˆê³µí•­IC<->ìš´ìˆ˜IC)","ì›í™œ",false},
+            {"12","ê´‘ì£¼ëŒ€êµ¬ (ë¬¸í¥JC<->ì˜¥í¬JC)","ì„œí–‰",false},
+            {"14","í•¨ì–‘ìš¸ì‚° (ë¶í•¨ì–‘JC<->ìš¸ì£¼JC)","ì„œí–‰",false},
+            {"16","ìš¸ì‚° (ì–¸ì–‘JC<->ìš¸ì‚°IC)","ì›í™œ",false},
+            {"20","ìƒˆë§Œê¸ˆí¬í•­ (ìƒˆë§Œê¸ˆIC<->í¬í•­IC)","ì›í™œ",false},
+            {"30","ë‹¹ì§„ì˜ë• (ë‹¹ì§„JC<->ì˜ë•IC)","ì›í™œ",false},
+            {"32","ì•„ì‚°ì²­ì£¼ (ì„œì•„ì‚°IC<->ì˜¤ì°½JC)","ì „ë©´ì°¨ë‹¨",false},
+            {"40","í‰íƒì œì²œ (ì„œí‰íƒJC<->ì œì²œJC)","ì •ì²´",false},
+            {"50","ì˜ë™ (ì„œì°½JC<->ê°•ë¦‰JC)","ì›í™œ",false},
+            {"52","ê´‘ì£¼ì›ì£¼ (ê²½ê¸°ê´‘ì£¼JC<->ì›ì£¼JC)","ì›í™œ",false},
+            {"60","ì„œìš¸ì–‘ì–‘ (ê°•ì¼IC<->ì–‘ì–‘IC)","ì›í™œ",false},
+            //ìˆœí™˜
+            {"100","ìˆ˜ë„ê¶Œì œ1ìˆœí™˜ (ì¼ì‚°IC<->íŒêµJC)","ì›í™œ",true},
+            {"300","ëŒ€ì „ë‚¨ë¶€ (ì„œëŒ€ì „JC<->ë¹„ë£¡JC)","ì›í™œ",false},
+            {"400","ìˆ˜ë„ê¶Œì œ2ìˆœí™˜ (í™”ì„±JC<->ë²•ì›IC)","ì„œí–‰",false},
+            {"500","ê´‘ì£¼ì™¸ê°ìˆœí™˜ (ë³¸ëŸ‰IC<->ëŒ€ë•JC)","ì›í™œ",false},
+            {"600","ë¶€ì‚°ì™¸ê³½ìˆœí™˜ (ì§„ì˜JC<->ê¸°ì¥JC)","ì •ì²´",false},
+            {"700","ëŒ€êµ¬ì™¸ê³½ìˆœí™˜ (êµ¬ë¼IC<->ìƒë§¤JC)","ì •ì²´",false},
+            //ê²½ì¸
+            {"110","ê²½ì¸ (ì„œì¸ì²œIC<->ì‹ ì›”IC)","ì›í™œ",false},
+            {"120","ì œ2ê²½ì¸ (ê³µí•­ì‹ ë„ì‹œJC<->ì—¬ìˆ˜ëŒ€ë¡œIC)","ì›í™œ",false},
+            {"130","ì¸ì²œê³µí•­ (ì‹ ë¶ˆIC<->ë¶ë¡œJC)","ì›í™œ",false},
     };
     
 
@@ -83,47 +83,47 @@ public class road extends JPanel { //extends »ó¼ÓºÎ¸ğ¿¡¼­ ¼±¾ğ/Á¤ÀÇÇÏ°í ºÎ¸ğÀÇ ¸
     public road() {
     	
     	setBackground(new Color(153, 204, 204));
-        setLayout(null); //Àı´ë°ª ÁÂÇ¥·Î ÄÄÆ÷³ÍÆ®µéÀ» »ç¿ë
+        setLayout(null); //ì ˆëŒ€ê°’ ì¢Œí‘œë¡œ ì»´í¬ë„ŒíŠ¸ë“¤ì„ ì‚¬ìš©
 
-        /////////¿ŞÂÊ/////////
-        /////¼³¸í//
+        /////////ì™¼ìª½/////////
+        /////ì„¤ëª…//
         JLabel Point = new JLabel("* [\uCCAB \uD589]\uD83D\uDDB1\uFE0F \uC624\uB984\uCC28\uC21C/\uB0B4\uB9BC\uCC28\uC21C ");
         Point.setBounds(25, 67, 290, 15); //setBounds( x, y, w, h);
         add(Point);
 
-        ///°Ë»ö///
+        ///ê²€ìƒ‰///
         JPanel panel = new JPanel();
         panel.setBounds(25, 18, 221, 39);
         panel.setBackground(new Color(153, 204, 204));
         panel.setLayout(null);
         JLabel label = new JLabel("\uAC80\uC0C9");
-        label.setFont(new Font("±¼¸²", Font.BOLD, 13));
+        label.setFont(new Font("êµ´ë¦¼", Font.BOLD, 13));
         label.setBounds(0, 10, 36, 26);
         panel.add(label);
         jtfFilter.setBounds(36, 11, 185, 26);
         panel.add(jtfFilter);
         add(panel);
         
-        ///Ç¥///
+        ///í‘œ///
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(25, 87, 335, 483);
         add(scrollPane);
-        list.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
+        list.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 12));
         scrollPane.setViewportView(list);
         list.setRowSorter(rowSorter);
         
-        list.getColumn("¡Ú").setCellRenderer(dcr);
+        list.getColumn("â˜…").setCellRenderer(dcr);
         JCheckBox box = new JCheckBox();
         box.setHorizontalAlignment(JLabel.CENTER);
-        list.getColumn("¡Ú").setCellEditor(new DefaultCellEditor(box));
+        list.getColumn("â˜…").setCellEditor(new DefaultCellEditor(box));
         
-        ////Ç¥ÀÇ °¢ ¿­ÀÇ ³ĞÀÌ
-        list.getColumn("¹øÈ£").setPreferredWidth(5);
-        list.getColumn("µµ·Î¸í (±âÁ¡<->Á¾Á¡)").setPreferredWidth(180);
-        list.getColumn("»óÅÂ").setPreferredWidth(5);
-        list.getColumn("¡Ú").setPreferredWidth(5);
+        ////í‘œì˜ ê° ì—´ì˜ ë„“ì´
+        list.getColumn("ë²ˆí˜¸").setPreferredWidth(5);
+        list.getColumn("ë„ë¡œëª… (ê¸°ì <->ì¢…ì )").setPreferredWidth(180);
+        list.getColumn("ìƒíƒœ").setPreferredWidth(5);
+        list.getColumn("â˜…").setPreferredWidth(5);
 
-        //////////¿À¸¥ÂÊ/////////////////
+        //////////ì˜¤ë¥¸ìª½/////////////////
         JLabel IMG = new JLabel("");
         IMG.setBounds(379, 87, 345, 483);
         IMG.setIcon(new ImageIcon("./img/img.jpg"));
@@ -132,7 +132,7 @@ public class road extends JPanel { //extends »ó¼ÓºÎ¸ğ¿¡¼­ ¼±¾ğ/Á¤ÀÇÇÏ°í ºÎ¸ğÀÇ ¸
         JLabel Title = new JLabel("Traffic Info");
         Title.setForeground(new Color(255, 165, 0));
         Title.setHorizontalAlignment(SwingConstants.CENTER);
-        Title.setFont(new Font("ÇÑÄÄ ¹éÁ¦ M", Font.BOLD, 55));
+        Title.setFont(new Font("í•œì»´ ë°±ì œ M", Font.BOLD, 55));
         Title.setBounds(357, 28, 378, 47);
         add(Title);
         
@@ -177,11 +177,11 @@ public class road extends JPanel { //extends »ó¼ÓºÎ¸ğ¿¡¼­ ¼±¾ğ/Á¤ÀÇÇÏ°í ºÎ¸ğÀÇ ¸
                JFrame frame = new JFrame("Traffic info");
                frame.getContentPane().add(new road());
                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//               frame.setLocationRelativeTo(null);  Ã¢ÀÌ °¡¿îµ¥ ³ªÅ¸³ª°Ô
-               frame.setVisible(true); //Ã¢À» È­¸é¿¡ ³ªÅ¸³¾ °ÍÀÎÁö
-               frame.setSize(760,630); // Ã¢ °¡·Î, ¼¼·Î Å©±â
-               frame.setLocation(250, 160); //Ã¢ÀÌ ³ªÅ¸³ª´Â À§Ä¡
-               frame.setResizable(false);  //Ã¢ Å©±â º¯°æ X
+//               frame.setLocationRelativeTo(null);  ì°½ì´ ê°€ìš´ë° ë‚˜íƒ€ë‚˜ê²Œ
+               frame.setVisible(true); //ì°½ì„ í™”ë©´ì— ë‚˜íƒ€ë‚¼ ê²ƒì¸ì§€
+               frame.setSize(760,630); // ì°½ ê°€ë¡œ, ì„¸ë¡œ í¬ê¸°
+               frame.setLocation(250, 160); //ì°½ì´ ë‚˜íƒ€ë‚˜ëŠ” ìœ„ì¹˜
+               frame.setResizable(false);  //ì°½ í¬ê¸° ë³€ê²½ X
             }
 
         });
@@ -189,12 +189,12 @@ public class road extends JPanel { //extends »ó¼ÓºÎ¸ğ¿¡¼­ ¼±¾ğ/Á¤ÀÇÇÏ°í ºÎ¸ğÀÇ ¸
     
     DefaultTableCellRenderer dcr = new DefaultTableCellRenderer()
     {
-     public Component getTableCellRendererComponent  // ¼¿·»´õ·¯
+     public Component getTableCellRendererComponent  // ì…€ë Œë”ëŸ¬
       (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
      {
       JCheckBox box= new JCheckBox();
-      box.setSelected(((Boolean)value).booleanValue());  //Boolean, Âü1 °ÅÁş0 
-      box.setHorizontalAlignment(JLabel.CENTER); //°¡¿îµ¥
+      box.setSelected(((Boolean)value).booleanValue());  //Boolean, ì°¸1 ê±°ì§“0 
+      box.setHorizontalAlignment(JLabel.CENTER); //ê°€ìš´ë°
       return box;
      }
     };
